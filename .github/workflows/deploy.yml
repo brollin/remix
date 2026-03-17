@@ -46,8 +46,12 @@ jobs:
             pnpm-lock.yaml \
             "$REMOTE:$DEPLOY_DIR/"
 
+          scp $SSH_OPTS deploy/remix.service "$REMOTE:/tmp/remix.service"
+
           ssh $SSH_OPTS "$REMOTE" << 'EOF'
             cd /opt/remix
             pnpm install --frozen-lockfile --prod
+            sudo cp /tmp/remix.service /etc/systemd/system/remix.service
+            sudo systemctl daemon-reload
             sudo systemctl restart remix
           EOF

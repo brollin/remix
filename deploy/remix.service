@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=ubuntu
 WorkingDirectory=/opt/remix
-ExecStart=/usr/bin/node build/server/index.js
+ExecStart=/usr/bin/npx react-router-serve ./build/server/index.js
 Restart=on-failure
 RestartSec=5
 Environment=NODE_ENV=production
