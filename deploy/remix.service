@@ -1,0 +1,16 @@
+[Unit]
+Description=Remix App (React Router)
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/remix
+ExecStart=/usr/bin/node build/server/index.js
+Restart=on-failure
+RestartSec=5
+Environment=NODE_ENV=production
+Environment=PORT=3000
+
+[Install]
+WantedBy=multi-user.target
